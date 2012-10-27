@@ -1,0 +1,27 @@
+@(formulario: Form[Login])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(views.html.include.fieldConstructorInput.render) }
+
+@main("Control Acceso Usuarios") {
+
+<h2> <image src="@routes.Assets.at("images/llave.png")"> Ingreso al Sistema </h2>
+
+@if(flash.containsKey("invalid")) {
+	<h4 style="color: red">
+		@flash.get("invalid")
+	</h4>
+}
+
+@form(routes.Home.ingresar()) {
+	<fieldset>
+		@inputText(formulario("login"),    '_showConstraints -> false,     '_label -> "Usuario :")
+		@inputPassword(formulario("clave"),'_showConstraints -> false,     '_label -> "Clave     :")
+	</fieldset>
+    
+    <input type="submit" value="Ingresar"> -
+	<a href="@routes.Home.index"> <input type="button" value="Cancelar"> </a>
+}
+    
+}

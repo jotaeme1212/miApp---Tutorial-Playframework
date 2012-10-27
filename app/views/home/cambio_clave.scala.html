@@ -1,0 +1,28 @@
+@(formulario: Form[Login])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(views.html.include.fieldConstructorInput.render) }
+
+@main("Control Acceso Usuarios") {
+
+<h2> <image src="@routes.Assets.at("images/llave.png")"> Cambio de Clave </h2>
+
+@if(flash.containsKey("invalid")) {
+	<h4 style="color: red">
+		@flash.get("invalid")
+	</h4>
+}
+
+@form(routes.Home.cambiar_clave()) {
+	<fieldset>
+		@inputPassword(formulario("clave_act"),'_showConstraints -> false,     '_label -> "Clave Actual   :")
+		@inputPassword(formulario("clave_new"),'_showConstraints -> false,     '_label -> "Clave Nueva   :")
+		@inputPassword(formulario("clave_rep"),'_showConstraints -> false,     '_label -> "Repita Nueva :")
+	</fieldset>
+    
+    <input type="submit" value="Ingresar"> -
+	<a href="@routes.Home.index"> <input type="button" value="Cancelar"> </a>
+}
+    
+}

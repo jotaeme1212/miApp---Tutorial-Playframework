@@ -1,0 +1,8 @@
+@defining({new Date().format("dd/MM/yyyy - hh:mm")}) { fecha =>
+
+	@if(session.get("user") != null) {
+		@session.get("user") ( @session.get("tipo") ) -
+	}
+	@fecha - Desarrollado en Play 2.0.3 - Todos los derechos reservados
+
+}

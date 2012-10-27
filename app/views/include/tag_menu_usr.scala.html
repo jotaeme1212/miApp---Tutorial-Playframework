@@ -1,0 +1,9 @@
+@if(session.get("user") == null) {
+	<a href="@routes.Home.login"> Ingreso </a>
+} else {
+	<a href="@routes.Home.cambio_clave"> Cambio Clave </a>
+	<br />
+	<a href="@routes.Home.salir"> Salir </a>
+}
+<br />
+<br />

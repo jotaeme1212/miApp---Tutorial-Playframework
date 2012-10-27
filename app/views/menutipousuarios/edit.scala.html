@@ -1,0 +1,29 @@
+@(id: Long, formulario: Form[MenuTipousuario])
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(views.html.include.fieldConstructorInput.render) }
+
+@main("Control Acceso Usuarios") {
+
+<h2> Editar Control de Acceso </h2>
+
+@form(routes.MenuTipousuarios.update(id)) {
+	<fieldset>
+		@inputText(formulario("id"), 'readonly -> "readonly",         '_label -> "ID                     :")
+        @select(
+			formulario("menu.id"), 
+            options(Menu.options), 
+            '_label -> "Opcion Menu:",
+            '_showConstraints -> false)
+        @select(
+			formulario("tipousuario.id"), 
+            options(Tipousuario.options), 
+            '_label -> "Tipo Usuario  :",
+            '_showConstraints -> false)
+	</fieldset>
+    
+    <input type="submit" value="Guardar"> -
+	<a href="@routes.MenuTipousuarios.index"> <input type="button" value="Cancelar"> </a>
+}
+    
+}

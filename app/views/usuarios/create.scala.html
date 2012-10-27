@@ -1,0 +1,28 @@
+@(formulario: Form[Usuario])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(views.html.include.fieldConstructorInput.render) }
+
+@main("Control Acceso Usuarios") {
+
+<h2> Nuevo Usuario del Sistema </h2>
+
+@form(routes.Usuarios.save()) {
+	<fieldset>
+		@inputText(formulario("name"),'_showConstraints -> false,     '_label -> "Nombre         :")
+		@inputText(formulario("login"),'_showConstraints -> false,    '_label -> "Login              :")
+		@inputText(formulario("password"),'_showConstraints -> false, '_label -> "Clave              :")
+		@inputText(formulario("email"),'_showConstraints -> false,    '_label -> "eMail              :")
+        @select(
+			formulario("tipousuario.id"), 
+            options(Tipousuario.options), 
+            '_label -> "Tipo Usuario:",
+            '_showConstraints -> false)
+	</fieldset>
+    
+    <input type="submit" value="Crear"> -
+	<a href="@routes.Usuarios.index"> <input type="button" value="Cancelar"> </a>
+}
+    
+}

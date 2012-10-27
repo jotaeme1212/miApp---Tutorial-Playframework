@@ -1,0 +1,33 @@
+@if(session.get("user") != null) {
+	@for(registro <- Menu.find.orderBy("raiz asc, orden asc").findList()) {
+
+		@if(registro.url != "") {
+
+			@if(registro.icon == "") {
+				<image src="@routes.Assets.at("images/icono_menu.gif")">
+			} else {
+				@defining("images/" + registro.icon) { imagen => <image src="@routes.Assets.at(imagen)"> }
+			}
+			<a href=@registro.url target="_blank"> @registro.name </a>
+
+		} else {
+
+			@if(registro.controlador != "") {
+
+				@if(registro.icon == "") {
+					<image src="@routes.Assets.at("images/icono_menu.gif")">
+				} else {
+					@defining("images/" + registro.icon) { imagen => <image src="@routes.Assets.at(imagen)"> }
+				}
+				<a href="@routes.Home.irA(registro.controlador, registro.accion)"> @registro.name </a>
+
+			} else {
+				@registro.name
+			}
+	
+		}
+		<br />
+
+	}
+}
+<br />

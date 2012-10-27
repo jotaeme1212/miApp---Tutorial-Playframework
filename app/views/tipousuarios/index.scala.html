@@ -1,0 +1,44 @@
+@(lista: List[Tipousuario])
+
+@import helper._
+
+@main("Control Acceso Usuarios") {
+    
+<h2> <image src="@routes.Assets.at("images/tipos.png")"> Listado de Tipos de Usuario </h2>
+
+@if(flash.containsKey("success")) {
+	<h3 style="color: green">
+		<image src="@routes.Assets.at("images/ok.gif")">
+		@flash.get("success")
+	</h3>
+} 
+
+<table class='webgrid'>
+	<tr class='webgrid-header'>
+		<th>ID</th>
+		<th>Nombre</th>
+		<th>Creado</th>
+		<th>Modificado</th>
+		<th></th>
+		<th></th>
+	</tr>
+
+	@for(registro <- lista) {
+	<tr class='webgrid-row-style'>
+		<td>@registro.id</td>
+		<td>@registro.name</td>
+		<td>@registro.created.format("dd/MM/yyyy - hh:mm")</td>
+		<td>@registro.updated.format("dd/MM/yyyy - hh:mm")</td>
+		<td><a href="@routes.Tipousuarios.edit(registro.id)"> <input type="button" value="Editar"> </a></td>
+		<td>
+			@form(routes.Tipousuarios.delete(registro.id)) {
+				<input type="submit" value="Eliminar">
+			}
+		</td>
+	</tr>
+	}
+</table>
+
+<a href="@routes.Tipousuarios.create()"> <input type="button" value="Crear"> </a>
+
+}

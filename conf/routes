@@ -1,0 +1,49 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                            controllers.Home.index()
+GET     /home/acerca_de              controllers.Home.acerca_de()
+GET     /home/salir                  controllers.Home.salir()
+GET     /home/login                  controllers.Home.login()
+POST    /home/login                  controllers.Home.ingresar()
+GET     /home/cambio_clave           controllers.Home.cambio_clave()
+POST    /home/cambio_clave           controllers.Home.cambiar_clave()
+GET     /home/irA                    controllers.Home.irA(controller:String, action:String)
+GET     /home/acceso_denegado        controllers.Home.acceso_denegado()
+
+# Tipos de Usuarios
+GET     /tipousuarios/index          controllers.Tipousuarios.index()
+GET     /tipousuarios/new            controllers.Tipousuarios.create()
+POST    /tipousuarios/new            controllers.Tipousuarios.save()
+GET     /tipousuarios/:id            controllers.Tipousuarios.edit(id:Long)
+POST    /tipousuarios/:id            controllers.Tipousuarios.update(id:Long)
+POST    /tipousuarios/delete/:id     controllers.Tipousuarios.delete(id:Long)
+
+# Usuarios
+GET     /usuarios/index              controllers.Usuarios.index()
+GET     /usuarios/new                controllers.Usuarios.create()
+POST    /usuarios/new                controllers.Usuarios.save()
+GET     /usuarios/:id                controllers.Usuarios.edit(id:Long)
+POST    /usuarios/:id                controllers.Usuarios.update(id:Long)
+POST    /usuarios/delete/:id         controllers.Usuarios.delete(id:Long)
+
+# Opciones de Menu
+GET     /menus/index                 controllers.Menus.index()
+GET     /menus/new                   controllers.Menus.create()
+POST    /menus/new                   controllers.Menus.save()
+GET     /menus/:id                   controllers.Menus.edit(id:Long)
+POST    /menus/:id                   controllers.Menus.update(id:Long)
+POST    /menus/delete/:id            controllers.Menus.delete(id:Long)
+
+# Accesos - Menu y Tipos
+GET     /menutipousuarios/index      controllers.MenuTipousuarios.index()
+GET     /menutipousuarios/new        controllers.MenuTipousuarios.create()
+POST    /menutipousuarios/new        controllers.MenuTipousuarios.save()
+GET     /menutipousuarios/:id        controllers.MenuTipousuarios.edit(id:Long)
+POST    /menutipousuarios/:id        controllers.MenuTipousuarios.update(id:Long)
+POST    /menutipousuarios/delete/:id controllers.MenuTipousuarios.delete(id:Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                controllers.Assets.at(path="/public", file)
